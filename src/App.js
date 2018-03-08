@@ -5,7 +5,7 @@ import BassDrum from './pages/bass/BassDrum';
 import SnareDrum from './pages/snare/SnareDrum';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import midiManager from './webmidi/MidiManager';
+import {midiManager} from './webmidi/MidiManager';
 
 class App extends Component {
 
@@ -26,19 +26,21 @@ class App extends Component {
       }
     }
   }
-  
+
   /**
-   * Called when a drum control is changed, 
+   * Called when a drum control is changed,
    * the drum control in the app state is then updated with the new value
-   * @param {string} drumType - type of drum eg. (bass, snare) 
-   * @param {number} controlNum - the control number on the drum 
-   * @param {number} newValue - the new value of the control 
+   * @param {string} drumType - type of drum eg. (bass, snare)
+   * @param {number} controlNum - the control number on the drum
+   * @param {number} newValue - the new value of the controlpitch
+   * @param {number} controlChangeNum - value of the control change message
    */
-  onDrumControlChange(drumType, controlNum, newValue){
+  onDrumControlChange(drumType, controlNum, newValue, controlChangeNum){
     var drumControlKey = drumType + "Control" + controlNum;
     let drum = Object.assign({}, this.state[drumType]);
     drum[drumControlKey] = newValue;
     this.setState({[drumType] : drum});
+    midiManager.sendControlChange(controlNum, newValue, "all");
   }
 
   render() {
