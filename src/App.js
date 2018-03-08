@@ -5,6 +5,7 @@ import BassDrum from './pages/bass/BassDrum';
 import SnareDrum from './pages/snare/SnareDrum';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import midiManager from './webmidi/MidiManager';
 
 class App extends Component {
 
