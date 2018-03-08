@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import './App.css';
 import BassDrum from './pages/bass/BassDrum';
 import SnareDrum from './pages/snare/SnareDrum';
+import 'react-tabs/style/react-tabs.css';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 class App extends Component {
 
@@ -41,36 +42,22 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/bass">Bass</Link>
-            </li>
-            <li>
-              <Link to="/snare">Snare</Link>
-            </li>
-          </ul>
+      <Tabs>
 
-          <Route exact path="/" render={() =>
-            <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
-          } />
-          <Route path="/bass" render={() =>
-            <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
-          } />
+        <TabList>
+          <Tab>Bass</Tab>
+          <Tab>Snare</Tab>
+        </TabList>
 
-          <Route path="/snare" render={() =>
-            <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} />
-          } />
-        </div>
+        <TabPanel>
+          <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+        </TabPanel>
 
+        <TabPanel>
+          <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+        </TabPanel>
 
-
-        
-      </Router>
+      </Tabs>
     );
   }
 }
