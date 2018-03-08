@@ -13,13 +13,15 @@ class BassDrum extends Component {
             <DrumKnob
              controlValue={this.props.bass.bassControl1}   
              onDrumControlChange={this.props.onDrumControlChange}
-             controlNum={1}/>
+             controlNum={1}
+             drumType={"bass"}/>
           </div>
           <div className="drum-control-col col-6 text-center">
             <DrumKnob
               controlValue={this.props.bass.bassControl2}
               onDrumControlChange={this.props.onDrumControlChange}
-              controlNum={2} />
+              controlNum={2}
+              drumType={"bass"} />
           </div>
 
         </div>
@@ -30,13 +32,15 @@ class BassDrum extends Component {
             <DrumKnob
               controlValue={this.props.bass.bassControl3}
               onDrumControlChange={this.props.onDrumControlChange}
-              controlNum={3} />
+              controlNum={3} 
+              drumType={"bass"}/>
           </div>
           <div className="drum-control-col col-6 text-center">
             <DrumKnob
               controlValue={this.props.bass.bassControl4}
               onDrumControlChange={this.props.onDrumControlChange}
-              controlNum={4} />
+              controlNum={4} 
+              drumType={"bass"}/>
           </div>
 
         </div>

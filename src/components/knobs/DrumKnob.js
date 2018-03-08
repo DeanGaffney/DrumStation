@@ -13,7 +13,7 @@ class DrumKnob extends React.Component {
    */
   handleChange = (newValue) => {
     //call the parent function to update the main state of the app
-    this.props.onDrumControlChange("bass", this.props.controlNum, newValue);
+    this.props.onDrumControlChange(this.props.drumType, this.props.controlNum, newValue);
     this.setState({value: newValue});
   };
 

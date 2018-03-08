@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import BassDrum from './pages/bass/BassDrum';
+import SnareDrum from './pages/snare/SnareDrum';
 
 class App extends Component {
 
@@ -8,10 +9,16 @@ class App extends Component {
     super();
     this.state = {
       bass:{
-        bassControl1: 50,
-        bassControl2: 50,
-        bassControl3: 50,
-        bassControl4: 50
+        bassControl1: 0,
+        bassControl2: 0,
+        bassControl3: 0,
+        bassControl4: 0
+      },
+      snare:{
+        snareControl1: 0,
+        snareControl2: 0,
+        snareControl3: 0,
+        snareControl4: 0,
       }
     }
   }
@@ -34,6 +41,7 @@ class App extends Component {
     return (
       <div>
         <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)}/>
+        <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} />
       </div>
     );
   }
