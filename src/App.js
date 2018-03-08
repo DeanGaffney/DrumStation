@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import './App.css';
 import BassDrum from './pages/bass/BassDrum';
 import SnareDrum from './pages/snare/SnareDrum';
@@ -39,10 +41,36 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)}/>
-        <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} />
-      </div>
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/bass">Bass</Link>
+            </li>
+            <li>
+              <Link to="/snare">Snare</Link>
+            </li>
+          </ul>
+
+          <Route exact path="/" render={() =>
+            <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+          } />
+          <Route path="/bass" render={() =>
+            <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+          } />
+
+          <Route path="/snare" render={() =>
+            <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+          } />
+        </div>
+
+
+
+        
+      </Router>
     );
   }
 }
