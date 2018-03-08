@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import BassDrum from './pages/bass/BassDrum';
 
@@ -27,13 +26,15 @@ class App extends Component {
   onDrumControlChange(drumType, controlNum, newValue){
     var drumControlKey = drumType + "Control" + controlNum;
     let drum = Object.assign({}, this.state[drumType]);
-    drum[drumControlKey] = newValue
+    drum[drumControlKey] = newValue;
     this.setState({[drumType] : drum});
   }
 
   render() {
     return (
+      <div>
         <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)}/>
+      </div>
     );
   }
 }

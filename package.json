@@ -11,7 +11,8 @@
     "react-touch-knob": "^0.2.3",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
-    "redbox-react": "^1.5.0"
+    "redbox-react": "^1.5.0",
+    "webmidi": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
