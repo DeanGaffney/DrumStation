@@ -10,6 +10,7 @@ class BassDrum extends Component {
         <div className="row">
 
           <div className="drum-control-col col-6 text-center">
+          <h2>Tune</h2>
             <DrumKnob
              controlValue={this.props.bass.bassControl1}
              onDrumControlChange={this.props.onDrumControlChange}
@@ -18,6 +19,7 @@ class BassDrum extends Component {
              controlChangeNum={1}/>
           </div>
           <div className="drum-control-col col-6 text-center">
+          <h2>Level</h2>
             <DrumKnob
               controlValue={this.props.bass.bassControl2}
               onDrumControlChange={this.props.onDrumControlChange}
@@ -31,6 +33,7 @@ class BassDrum extends Component {
         <div className="row">
 
           <div className="drum-control-col col-6 text-center">
+          <h2>Attack/Tone</h2>
             <DrumKnob
               controlValue={this.props.bass.bassControl3}
               onDrumControlChange={this.props.onDrumControlChange}
@@ -39,6 +42,7 @@ class BassDrum extends Component {
               controlChangeNum={3}/>
           </div>
           <div className="drum-control-col col-6 text-center">
+          <h2>Decay</h2>
             <DrumKnob
               controlValue={this.props.bass.bassControl4}
               onDrumControlChange={this.props.onDrumControlChange}
