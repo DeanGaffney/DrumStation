@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import BassDrum from './pages/bass/BassDrum';
 import SnareDrum from './pages/snare/SnareDrum';
+import HiHat from './pages/hihat/HiHat';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {midiManager} from './webmidi/MidiManager';
@@ -22,7 +23,11 @@ class App extends Component {
         snareControl1: 0,
         snareControl2: 0,
         snareControl3: 0,
-        snareControl4: 0,
+        snareControl4: 0
+      },
+      hihat:{
+        hihatControl1: 0,
+        hihatControl2: 0
       }
     }
   }
@@ -50,6 +55,7 @@ class App extends Component {
         <TabList>
           <Tab>Bass</Tab>
           <Tab>Snare</Tab>
+          <Tab>Hi Hat</Tab>
         </TabList>
 
         <TabPanel>
@@ -58,6 +64,10 @@ class App extends Component {
 
         <TabPanel>
           <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+        </TabPanel>
+
+        <TabPanel>
+          <HiHat hihat={this.state.hihat} onDrumControlChange={this.onDrumControlChange.bind(this)} />
         </TabPanel>
 
       </Tabs>

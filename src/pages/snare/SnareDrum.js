@@ -11,7 +11,7 @@ class SnareDrum extends Component {
 
                     <div className="drum-control-col col-6 text-center">
                         <DrumKnob
-                            controlValue={this.props.snare.bassControl1}
+                            controlValue={this.props.snare.snareControl1}
                             onDrumControlChange={this.props.onDrumControlChange}
                             controlNum={1}
                             drumType={"snare"}
@@ -19,7 +19,7 @@ class SnareDrum extends Component {
                     </div>
                     <div className="drum-control-col col-6 text-center">
                         <DrumKnob
-                            controlValue={this.props.snare.bassControl2}
+                            controlValue={this.props.snare.snareControl2}
                             onDrumControlChange={this.props.onDrumControlChange}
                             controlNum={2}
                             drumType={"snare"}
@@ -32,7 +32,7 @@ class SnareDrum extends Component {
 
                     <div className="drum-control-col col-6 text-center">
                         <DrumKnob
-                            controlValue={this.props.snare.bassControl3}
+                            controlValue={this.props.snare.snareControl3}
                             onDrumControlChange={this.props.onDrumControlChange}
                             controlNum={3}
                             drumType={"snare"}
@@ -40,7 +40,7 @@ class SnareDrum extends Component {
                     </div>
                     <div className="drum-control-col col-6 text-center">
                         <DrumKnob
-                            controlValue={this.props.snare.bassControl4}
+                            controlValue={this.props.snare.snareControl4}
                             onDrumControlChange={this.props.onDrumControlChange}
                             controlNum={4}
                             drumType={"snare"}
