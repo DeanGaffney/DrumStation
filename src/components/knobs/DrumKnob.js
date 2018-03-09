@@ -7,6 +7,10 @@ class DrumKnob extends React.Component {
     value: 0
   }
 
+  /**
+  * Set the state value to be that of the App.js State
+  * just before the element mounts to the DOM
+  **/
   componentWillMount(){
     this.setState({value: this.props.controlValue});
   }
