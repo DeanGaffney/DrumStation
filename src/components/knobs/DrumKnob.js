@@ -7,6 +7,10 @@ class DrumKnob extends React.Component {
     value: 0
   }
 
+  componentWillMount(){
+    this.setState({value: this.props.controlValue});
+  }
+
   /**
    * Handles a change on a drum control component
    * @param {number} - the new value to set in the componenet state
