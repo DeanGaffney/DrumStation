@@ -29,7 +29,7 @@ class App extends Component {
         hihatControl1: 0,
         hihatControl2: 0
       },
-      play:"Playing"
+      play: false
     }
   }
 
@@ -49,9 +49,7 @@ class App extends Component {
     midiManager.sendControlChange(controlNum, newValue, "all");
   }
 
-  clicked(text){
-    this.setState({play: text});
-  }
+
 
   render() {
     return (
@@ -64,9 +62,7 @@ class App extends Component {
         </TabList>
 
         <TabPanel>
-          {this.state.play}
           <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
-          <button onClick={ (e) => { this.clicked("Hello"); }}>Button</button>
         </TabPanel>
 
         <TabPanel>
