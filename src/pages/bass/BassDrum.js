@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DrumKnob from '../../components/knobs/DrumKnob';
+import StepSequencer from '../../components/stepSequencer/StepSequencer';
 import '../Drum.css';
 
 class BassDrum extends Component {
@@ -52,7 +53,7 @@ class BassDrum extends Component {
           </div>
 
         </div>
-
+        <StepSequencer />
       </div>
     );
   }

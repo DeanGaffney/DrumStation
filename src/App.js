@@ -62,70 +62,7 @@ class App extends Component {
         </TabList>
 
         <TabPanel>
-          <div>
             <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
-            <div class="form-check form-check-inline">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/> 1
-              </label>
-            </div>
-            <div class="form-check form-check-inline">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/> 2
-              </label>
-            </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 3
-              </label>
-           </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 4
-              </label>
-           </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 5
-              </label>
-           </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 6
-              </label>
-           </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 7
-              </label>
-           </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 8
-              </label>
-           </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 9
-              </label>
-           </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 10
-              </label>
-           </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 11
-              </label>
-           </div>
-            <div class="form-check form-check-inline disabled">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 12
-              </label>
-           </div>
-
-          </div>
         </TabPanel>
 
         <TabPanel>
