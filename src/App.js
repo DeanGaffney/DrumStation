@@ -28,7 +28,8 @@ class App extends Component {
       hihat:{
         hihatControl1: 0,
         hihatControl2: 0
-      }
+      },
+      play:"Playing"
     }
   }
 
@@ -48,6 +49,10 @@ class App extends Component {
     midiManager.sendControlChange(controlNum, newValue, "all");
   }
 
+  clicked(text){
+    this.setState({play: text});
+  }
+
   render() {
     return (
       <Tabs>
@@ -59,7 +64,9 @@ class App extends Component {
         </TabList>
 
         <TabPanel>
+          {this.state.play}
           <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+          <button onClick={ (e) => { this.clicked("Hello"); }}>Button</button>
         </TabPanel>
 
         <TabPanel>
@@ -69,6 +76,29 @@ class App extends Component {
         <TabPanel>
           <HiHat hihat={this.state.hihat} onDrumControlChange={this.onDrumControlChange.bind(this)} />
         </TabPanel>
+
+      <div class = "center">
+	     <div class="row">
+		     <div class="btn-group" data-toggle="buttons">
+         <label class="container"> One
+           <input type="checkbox" />
+             <span class="checkmark"></span>
+		  </label>
+      <label class="container"> Two
+        <input type="checkbox" />
+          <span class="checkmark"></span>
+		  </label>
+      <label class="container"> Three
+        <input type="checkbox" />
+          <span class="checkmark"></span>
+		  </label>
+      <label class="container"> Four
+        <input type="checkbox" />
+          <span class="checkmark"></span>
+		  </label>
+		</div>
+	</div>
+ </div>
 
       </Tabs>
     );
