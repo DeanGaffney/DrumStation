@@ -6,26 +6,26 @@ import SnareDrum from './pages/snare/SnareDrum';
 import HiHat from './pages/hihat/HiHat';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {midiManager} from './webmidi/MidiManager';
+import { midiManager } from './webmidi/MidiManager';
 
 class App extends Component {
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      bass:{
+      bass: {
         bassControl1: 0,
         bassControl2: 0,
         bassControl3: 0,
         bassControl4: 0
       },
-      snare:{
+      snare: {
         snareControl1: 0,
         snareControl2: 0,
         snareControl3: 0,
         snareControl4: 0
       },
-      hihat:{
+      hihat: {
         hihatControl1: 0,
         hihatControl2: 0
       },
@@ -41,12 +41,12 @@ class App extends Component {
    * @param {number} newValue - the new value of the controlpitch
    * @param {number} controlChangeNum - value of the control change message
    */
-  onDrumControlChange(drumType, controlNum, newValue, controlChangeNum){
+  onDrumControlChange(drumType, controlNum, newValue, controlChangeNum) {
     var drumControlKey = drumType + "Control" + controlNum;
     let drum = Object.assign({}, this.state[drumType]);
     drum[drumControlKey] = newValue;
-    this.setState({[drumType] : drum});
-    midiManager.sendControlChange(controlNum, newValue, "all");
+    this.setState({ [drumType]: drum });
+    //midiManager.sendControlChange(controlNum, newValue, "all");
   }
 
 
@@ -62,7 +62,70 @@ class App extends Component {
         </TabList>
 
         <TabPanel>
-          <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+          <div>
+            <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/> 1
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/> 2
+              </label>
+            </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 3
+              </label>
+           </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 4
+              </label>
+           </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 5
+              </label>
+           </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 6
+              </label>
+           </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 7
+              </label>
+           </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 8
+              </label>
+           </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 9
+              </label>
+           </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 10
+              </label>
+           </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 11
+              </label>
+           </div>
+            <div class="form-check form-check-inline disabled">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled/> 12
+              </label>
+           </div>
+
+          </div>
         </TabPanel>
 
         <TabPanel>
@@ -72,29 +135,6 @@ class App extends Component {
         <TabPanel>
           <HiHat hihat={this.state.hihat} onDrumControlChange={this.onDrumControlChange.bind(this)} />
         </TabPanel>
-
-      <div class = "center">
-	     <div class="row">
-		     <div class="btn-group" data-toggle="buttons">
-         <label class="container"> One
-           <input type="checkbox" />
-             <span class="checkmark"></span>
-		  </label>
-      <label class="container"> Two
-        <input type="checkbox" />
-          <span class="checkmark"></span>
-		  </label>
-      <label class="container"> Three
-        <input type="checkbox" />
-          <span class="checkmark"></span>
-		  </label>
-      <label class="container"> Four
-        <input type="checkbox" />
-          <span class="checkmark"></span>
-		  </label>
-		</div>
-	</div>
- </div>
 
       </Tabs>
     );
