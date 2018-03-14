@@ -29,7 +29,7 @@ class App extends Component {
         hihatControl1: 0,
         hihatControl2: 0
       },
-      play: false
+      isPLaying: false
     }
   }
 
