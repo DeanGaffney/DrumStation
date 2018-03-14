@@ -7,6 +7,7 @@ import HiHat from './pages/hihat/HiHat';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { midiManager } from './webmidi/MidiManager';
+import PlayButton from './components/playButton/PlayButton';
 
 class App extends Component {
 
@@ -18,21 +19,25 @@ class App extends Component {
         bassControl2: 0,
         bassControl3: 0,
         bassControl4: 0,
-        steps: []
+        steps: [],
+        note: "C1"
       },
       snare: {
         snareControl1: 0,
         snareControl2: 0,
         snareControl3: 0,
         snareControl4: 0,
-        steps:[]
+        steps:[],
+        note: "D1"
       },
       hihat: {
         hihatControl1: 0,
         hihatControl2: 0,
-        steps: []
+        steps: [],
+        note: "F#1"
       },
-      isPlaying: false
+      isPlaying: true,
+      bpm: 120
     }
   }
 
@@ -50,6 +55,8 @@ class App extends Component {
     drum[drumControlKey] = newValue;
     this.setState({ [drumType]: drum });
     //midiManager.sendControlChange(controlNum, newValue, "all");
+    //midiManager.playNote("C1", "all", this.state.bpm);
+    //midiManager.drumLoop(this.state.bpm, this.state.isPlaying, this.state.bass);
   }
 
   /**
@@ -80,6 +87,7 @@ class App extends Component {
 
         <TabPanel>
             <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
+            <PlayButton play={this.state.bass}/>
         </TabPanel>
 
         <TabPanel>
