@@ -12,26 +12,25 @@ class App extends Component {
 
   constructor() {
     super();
-    const initalSteps = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
     this.state = {
       bass: {
         bassControl1: 0,
         bassControl2: 0,
         bassControl3: 0,
         bassControl4: 0,
-        steps: initalSteps.slice()
+        steps: []
       },
       snare: {
         snareControl1: 0,
         snareControl2: 0,
         snareControl3: 0,
         snareControl4: 0,
-        steps: initalSteps.slice()
+        steps:[]
       },
       hihat: {
         hihatControl1: 0,
         hihatControl2: 0,
-        steps: initalSteps.slice()
+        steps: []
       },
       isPlaying: false
     }
@@ -61,10 +60,13 @@ class App extends Component {
    * */
   onStepSequencerChange(drumType, stepNumber, isPlaying){
     let drum = Object.assign({}, this.state[drumType]);
-    drum['steps'][stepNumber - 1] = isPlaying;
+    if(isPlaying){
+      drum['steps'].push(stepNumber);
+    }else{
+      drum['steps'].splice(drum['steps'].indexOf(stepNumber), 1);
+    }
     this.setState({[drumType] : drum});
   }
-
 
   render() {
     return (

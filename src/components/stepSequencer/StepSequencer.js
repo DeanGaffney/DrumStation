@@ -14,7 +14,7 @@ class StepSequencer extends React.Component {
             number={number}
             drumType={this.props.drumType}
             onStepSequencerChange={this.props.onStepSequencerChange}
-            shouldPlayStep={this.props.steps[number - 1]}/>
+            shouldPlayStep={this.props.steps.includes(number)}/>
     );
     return stepList;
   }
