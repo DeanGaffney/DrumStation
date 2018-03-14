@@ -12,24 +12,28 @@ class App extends Component {
 
   constructor() {
     super();
+    const initalSteps = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
     this.state = {
       bass: {
         bassControl1: 0,
         bassControl2: 0,
         bassControl3: 0,
-        bassControl4: 0
+        bassControl4: 0,
+        steps: initalSteps.slice()
       },
       snare: {
         snareControl1: 0,
         snareControl2: 0,
         snareControl3: 0,
-        snareControl4: 0
+        snareControl4: 0,
+        steps: initalSteps.slice()
       },
       hihat: {
         hihatControl1: 0,
-        hihatControl2: 0
+        hihatControl2: 0,
+        steps: initalSteps.slice()
       },
-      isPLaying: false
+      isPlaying: false
     }
   }
 
@@ -38,7 +42,7 @@ class App extends Component {
    * the drum control in the app state is then updated with the new value
    * @param {string} drumType - type of drum eg. (bass, snare)
    * @param {number} controlNum - the control number on the drum
-   * @param {number} newValue - the new value of the controlpitch
+   * @param {number} newValue - the new value of the control pitch
    * @param {number} controlChangeNum - value of the control change message
    */
   onDrumControlChange(drumType, controlNum, newValue, controlChangeNum) {
@@ -49,6 +53,17 @@ class App extends Component {
     //midiManager.sendControlChange(controlNum, newValue, "all");
   }
 
+  /**
+   * Called when a step in a step sequencer changes
+   * @param {string} drumType - type of drum eg. (bass, snare)
+   * @param {number} stepNumber - the number of the step in the step sequencer
+   * @param {boolean} isPlaying - the value to trigger the step as playing or not playing
+   * */
+  onStepSequencerChange(drumType, stepNumber, isPlaying){
+    let drum = Object.assign({}, this.state[drumType]);
+    drum['steps'][stepNumber - 1] = isPlaying;
+    this.setState({[drumType] : drum});
+  }
 
 
   render() {
@@ -62,15 +77,15 @@ class App extends Component {
         </TabList>
 
         <TabPanel>
-            <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+            <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
         </TabPanel>
 
         <TabPanel>
-          <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+          <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
         </TabPanel>
 
         <TabPanel>
-          <HiHat hihat={this.state.hihat} onDrumControlChange={this.onDrumControlChange.bind(this)} />
+          <HiHat hihat={this.state.hihat} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
         </TabPanel>
 
       </Tabs>

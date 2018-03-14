@@ -29,7 +29,10 @@ class HiHat extends Component {
           </div>
 
         </div>
-       <StepSequencer/>
+        <StepSequencer steps={this.props.hihat.steps}
+          drumType={"hihat"}
+          onStepSequencerChange={this.props.onStepSequencerChange}
+        />
       </div>
     );
   }

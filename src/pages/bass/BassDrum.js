@@ -53,7 +53,10 @@ class BassDrum extends Component {
           </div>
 
         </div>
-        <StepSequencer />
+        <StepSequencer steps={this.props.bass.steps} 
+                       drumType={"bass"} 
+                       onStepSequencerChange={this.props.onStepSequencerChange}
+        />
       </div>
     );
   }

@@ -51,7 +51,10 @@ class SnareDrum extends Component {
                     </div>
 
                 </div>
-             <StepSequencer/>
+                <StepSequencer steps={this.props.snare.steps}
+                    drumType={"snare"}
+                    onStepSequencerChange={this.props.onStepSequencerChange}
+                />
             </div>
         );
     }

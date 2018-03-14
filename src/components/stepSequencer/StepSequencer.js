@@ -10,7 +10,11 @@ class StepSequencer extends React.Component {
   StepsList(){
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     const stepList = numbers.map((number) => 
-      <Step key={number.toString()} number={number}/>
+      <Step key={this.props.drumType + number.toString()} 
+            number={number}
+            drumType={this.props.drumType}
+            onStepSequencerChange={this.props.onStepSequencerChange}
+            shouldPlayStep={this.props.steps[number - 1]}/>
     );
     return stepList;
   }
