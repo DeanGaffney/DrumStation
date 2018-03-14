@@ -30,7 +30,7 @@ class Step extends React.Component {
             <div className="form-check form-check-inline">
                 <label className="form-check-label">
                     <input className="form-check-input" type="checkbox" 
-                           id={"inlineCheckbox" + this.props.number} 
+                           id={this.props.drumType + "-inlineCheckbox" + this.props.number} 
                            value={"option" + this.props.number} 
                            onChange={this.handleInputChange}
                            checked={this.props.shouldPlayStep}/> {this.props.number}
