@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import BassDrum from './pages/bass/BassDrum';
 import SnareDrum from './pages/snare/SnareDrum';
+import TomTom from './pages/tomTom/TomTom';
 import HiHat from './pages/hihat/HiHat';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -30,6 +31,13 @@ class App extends Component {
         steps:[],
         note: "D1"
       },
+      tomTom: {
+        tomTomControl1: 0,
+        tomTomControl2: 0,
+        tomTomControl3: 0,
+        steps:[],
+        note: "F1"
+      },
       hihat: {
         hihatControl1: 0,
         hihatControl2: 0,
@@ -55,7 +63,7 @@ class App extends Component {
     drum[drumControlKey] = newValue;
     this.setState({ [drumType]: drum });
     //midiManager.sendControlChange(controlNum, newValue, "all");
-    //midiManager.playNote("C1", "all", this.state.bpm);
+    midiManager.playNote("C1", "all", this.state.bpm);
     //midiManager.drumLoop(this.state.bpm, this.state.isPlaying, this.state.bass);
   }
 
@@ -82,6 +90,7 @@ class App extends Component {
         <TabList>
           <Tab>Bass</Tab>
           <Tab>Snare</Tab>
+          <Tab>Tom Toms</Tab>
           <Tab>Hi Hat</Tab>
         </TabList>
 
@@ -92,6 +101,10 @@ class App extends Component {
 
         <TabPanel>
           <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+        </TabPanel>
+
+        <TabPanel>
+          <TomTom tomTom={this.state.tomTom} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
         </TabPanel>
 
         <TabPanel>
