@@ -6,8 +6,8 @@ class MidiManager {
     constructor(){
         this.enable();
         this.output={};
+        this.intervalId = 0;
     }
-
 
     /**
      * Enables WebMidi
@@ -18,8 +18,6 @@ class MidiManager {
                 console.log("WebMidi could not be enabled.", err);
             } else {
                 console.log("WebMidi enabled!");
-                midiManager.output = WebMidi.getOutputByName("loopMIDI Port");
-                //midiManager.playNote("D2", "all", {time: duration: 20000});
             }
         });
     }
@@ -40,6 +38,25 @@ class MidiManager {
 
     sendControlChange(ctrlNum, value,  channel, ccOptions){
       this.output.sendControlChange(ctrlNum, value, channel, ccOptions);
+    }
+
+    /**
+     * Plays the drums
+     * @param {Object} appState - the entire App.js state 
+     */
+    play(appState){
+        console.log(appState);
+        midiManager.intervalId = setInterval(function () {
+            console.log("Playing!");
+        }, 1000);
+    }
+
+    /**
+     * Stops the drums playing
+     */
+    stop(){
+        clearInterval(midiManager.intervalId);      //stop the setInterval running
+        console.log("Not Playing!");
     }
 
 }

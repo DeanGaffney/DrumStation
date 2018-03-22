@@ -44,7 +44,7 @@ class App extends Component {
         steps: [],
         note: "F#1"
       },
-      isPlaying: true,
+      isPlaying: false,
       bpm: 120
     }
   }
@@ -63,7 +63,7 @@ class App extends Component {
     drum[drumControlKey] = newValue;
     this.setState({ [drumType]: drum });
     //midiManager.sendControlChange(controlNum, newValue, "all");
-    midiManager.playNote("C1", "all", this.state.bpm);
+    //midiManager.playNote("C1", "all", this.state.bpm);
     //midiManager.drumLoop(this.state.bpm, this.state.isPlaying, this.state.bass);
   }
 
@@ -83,6 +83,20 @@ class App extends Component {
     this.setState({[drumType] : drum});
   }
 
+  /**
+   * Toggle the state of the playing attribute when called
+   * @param {boolean} isPlaying - true if the state is playing, false otherwise
+   */
+  onPlayClicked(isPlaying){
+    this.setState({isPlaying: isPlaying}, () => {
+      if (isPlaying) {
+        midiManager.play(this.state);
+      } else {
+        midiManager.stop();
+      }
+    });
+  }
+
   render() {
     return (
       <Tabs>
@@ -96,19 +110,22 @@ class App extends Component {
 
         <TabPanel>
             <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
-            <PlayButton play={this.state.bass}/>
+            <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
         </TabPanel>
 
         <TabPanel>
           <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+          <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
         </TabPanel>
 
         <TabPanel>
           <TomTom tomTom={this.state.tomTom} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+          <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
         </TabPanel>
 
         <TabPanel>
           <HiHat hihat={this.state.hihat} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+          <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
         </TabPanel>
 
       </Tabs>
