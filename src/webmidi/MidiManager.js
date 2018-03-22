@@ -18,12 +18,14 @@ class MidiManager {
                 console.log("WebMidi could not be enabled.", err);
             } else {
                 console.log("WebMidi enabled!");
+                midiManager.output = WebMidi.getOutputByName("loopMIDI Port");
+                console.log(midiManager.output);
             }
         });
     }
 
     playNote(note, channel,time){
-      this.output.playNote(note, channel, {time: time});
+      midiManager.output.playNote(note, channel, {time: time});
     }
 
     drumLoop(bpm, isPlaying, drum){
@@ -42,13 +44,11 @@ class MidiManager {
 
     /**
      * Plays the drums
-     * @param {Object} appState - the entire App.js state 
+     * @param {Object} appState - the entire App.js state
      */
     play(appState){
         console.log(appState);
-        midiManager.intervalId = setInterval(function () {
-            console.log("Playing!");
-        }, 1000);
+        midiManager.intervalId = setInterval(midiManager.playNote, 1000, "D1", "all", 1000);
     }
 
     /**
