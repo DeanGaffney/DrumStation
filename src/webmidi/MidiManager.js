@@ -48,7 +48,10 @@ class MidiManager {
      */
     play(appState){
         console.log(appState);
-        midiManager.intervalId = setInterval(midiManager.playNote, 1000, "D1", "all", 1000);
+        // midiManager.intervalId = setInterval(midiManager.playNote, 1000, "D1", "all", 1000);//Referrence to the fucnction, interval time, note, channel, duration
+        midiManager.intervalId = setInterval(() => {
+          midiManager.playNote("D1", "all", 1000);
+        }, 1000);
     }
 
     /**
