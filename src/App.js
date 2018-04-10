@@ -9,6 +9,7 @@ import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { midiManager } from './webmidi/MidiManager';
 import PlayButton from './components/playButton/PlayButton';
+import CueButton from './components/cueButton/CueButton';
 
 class App extends Component {
 
@@ -45,6 +46,7 @@ class App extends Component {
         note: "F#1"
       },
       isPlaying: false,
+      cue: false,
       bpm: 120
     }
   }
@@ -67,11 +69,13 @@ class App extends Component {
 
     // midiManager.sendControlChange(controlChangeNum, newValue, "all", {time:1000});
     // midiManager.output.sendPitchBend(newValue / 127, "all", {time: 1000});
-    
+
     if(this.state.isPlaying){
       midiManager.drums = [this.state.bass, this.state.snare,this.state.hihat, this.state.tomTom];
     }
   }
+
+
 
   /**
    * Called when a step in a step sequencer changes
@@ -108,6 +112,10 @@ class App extends Component {
     });
   }
 
+  onCueClicked(cue){
+    midiManager.currentIndex = 0;
+  }
+
   render() {
     return (
       <Tabs>
@@ -122,6 +130,8 @@ class App extends Component {
         <TabPanel>
             <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
+            <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
+
         </TabPanel>
 
         <TabPanel>
