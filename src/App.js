@@ -49,6 +49,8 @@ class App extends Component {
     }
   }
 
+
+
   /**
    * Called when a drum control is changed,
    * the drum control in the app state is then updated with the new value
@@ -62,6 +64,11 @@ class App extends Component {
     let drum = Object.assign({}, this.state[drumType]);
     drum[drumControlKey] = newValue;
     this.setState({ [drumType]: drum });
+    
+    if(this.state.isPlaying){
+      midiManager.drums = [this.state.bass, this.state.snare,this.state.hihat, this.state.tomTom];
+      // midiManager.play(this.state);
+    }
     //midiManager.sendControlChange(controlNum, newValue, "all");
     //midiManager.playNote("C1", "all", this.state.bpm);
     //midiManager.drumLoop(this.state.bpm, this.state.isPlaying, this.state.bass);
@@ -81,6 +88,11 @@ class App extends Component {
       drum['steps'].splice(drum['steps'].indexOf(stepNumber), 1);
     }
     this.setState({[drumType] : drum});
+
+    if(this.state.isPlaying){
+      midiManager.drums = [this.state.bass, this.state.snare, this.state.hihat, this.state.tomTom];
+      // midiManager.play(this.state);
+    }
   }
 
   /**
@@ -90,7 +102,9 @@ class App extends Component {
   onPlayClicked(isPlaying){
     this.setState({isPlaying: isPlaying}, () => {
       if (isPlaying) {
-        midiManager.play(this.state);
+          midiManager.drums = [this.state.bass, this.state.snare, this.state.hihat, this.state.tomTom];
+          midiManager.play(this.state);
+        // midiManager.isPlaying = true;
       } else {
         midiManager.stop();
       }

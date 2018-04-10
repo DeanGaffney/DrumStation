@@ -7,6 +7,10 @@ class MidiManager {
         this.enable();
         this.output={};
         this.intervalId = 0;
+        this.currentIndex = 0;
+        this.drums = [];
+        this.bpm = 120;
+        this.isPlaying = false;
     }
 
     /**
@@ -48,18 +52,31 @@ class MidiManager {
      * @param {Object} appState - the entire App.js state
      */
     play(appState, drums){
-        console.log(appState);
-        var repeat = 16;
-        drums = [appState.bass, appState.snare, appState.hihat];
-        for(var k = 0; k < repeat; repeat++){
-          for(var i = 0; i < drums.length; i++){
-            for(var j = 0; i < drums[i].steps.length; j++){
-              midiManager.playNote(drums[i].note, "all");
+
+        midiManager.intervalId = setInterval(function () {
+          var drums = [appState.bass, appState.snare, appState.hihat];
+          for (var i = 0; i < drums.length; i++) {
+            if (drums[i].steps.includes(midiManager.currentIndex + 1)) {
+              midiManager.playNote(drums[i].note, "all", 1000, 1000);
             }
           }
-        }
-        var sixteenth = (60/appState.bpm /4 ) * 1000;
-        midiManager.playOneBarLoop(sixteenth);
+          midiManager.currentIndex = (midiManager.currentIndex + 1) % 16;
+        }, (60 / appState.bpm / 4)  * 1000);
+
+
+        // console.log(appState);
+        // var repeat = 16;
+        // drums = [appState.bass, appState.snare, appState.hihat];
+        // for(var k = 0; k < repeat; repeat++){
+        //   for(var i = 0; i < drums.length; i++){
+        //     for(var j = 0; i < drums[i].steps.length; j++){
+        //      // midiManager.playNote(drums[i].note, "all");
+        //      console.log("played note");
+        //     }
+        //   }
+        // }
+        // var sixteenth = (60/appState.bpm /4 ) * 1000;
+        // midiManager.playOneBarLoop(sixteenth);
       //   // midiManager.intervalId = setInterval(midiManager.playNote, 1000, "D1", "all", 1000);//Referrence to the fucnction, interval time, note, channel, duration
       // midiManager.intervalId = setInterval(() => {
       // midiManager.drumLoop(appState.bpm, appState.isPlaying, appState.bass)
