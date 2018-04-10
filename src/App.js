@@ -67,11 +67,7 @@ class App extends Component {
     
     if(this.state.isPlaying){
       midiManager.drums = [this.state.bass, this.state.snare,this.state.hihat, this.state.tomTom];
-      // midiManager.play(this.state);
     }
-    //midiManager.sendControlChange(controlNum, newValue, "all");
-    //midiManager.playNote("C1", "all", this.state.bpm);
-    //midiManager.drumLoop(this.state.bpm, this.state.isPlaying, this.state.bass);
   }
 
   /**
@@ -91,7 +87,6 @@ class App extends Component {
 
     if(this.state.isPlaying){
       midiManager.drums = [this.state.bass, this.state.snare, this.state.hihat, this.state.tomTom];
-      // midiManager.play(this.state);
     }
   }
 
@@ -104,7 +99,6 @@ class App extends Component {
       if (isPlaying) {
           midiManager.drums = [this.state.bass, this.state.snare, this.state.hihat, this.state.tomTom];
           midiManager.play(this.state);
-        // midiManager.isPlaying = true;
       } else {
         midiManager.stop();
       }
