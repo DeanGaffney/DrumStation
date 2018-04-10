@@ -41,7 +41,7 @@ class MidiManager {
      * Plays the drums
      * @param {Object} appState - the entire App.js state
      */
-    play(appState, drums){
+    play(appState){
 
         midiManager.intervalId = setInterval(function () {
           var drums = [appState.bass, appState.snare, appState.hihat];

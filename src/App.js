@@ -64,6 +64,9 @@ class App extends Component {
     let drum = Object.assign({}, this.state[drumType]);
     drum[drumControlKey] = newValue;
     this.setState({ [drumType]: drum });
+
+    // midiManager.sendControlChange(controlChangeNum, newValue, "all", {time:1000});
+    // midiManager.output.sendPitchBend(newValue / 127, "all", {time: 1000});
     
     if(this.state.isPlaying){
       midiManager.drums = [this.state.bass, this.state.snare,this.state.hihat, this.state.tomTom];
