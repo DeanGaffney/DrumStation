@@ -9,7 +9,7 @@ import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { midiManager } from './webmidi/MidiManager';
 import PlayButton from './components/playButton/PlayButton';
-
+let drumWorker = null;
 class App extends Component {
 
   constructor() {
@@ -47,6 +47,11 @@ class App extends Component {
       isPlaying: false,
       bpm: 120
     }
+    
+  }
+
+  componentWillMount(){
+
   }
 
   /**
@@ -65,6 +70,7 @@ class App extends Component {
     //midiManager.sendControlChange(controlNum, newValue, "all");
     //midiManager.playNote("C1", "all", this.state.bpm);
     //midiManager.drumLoop(this.state.bpm, this.state.isPlaying, this.state.bass);
+    drumWorker.postMessage([this.state]);
   }
 
   /**
@@ -81,6 +87,7 @@ class App extends Component {
       drum['steps'].splice(drum['steps'].indexOf(stepNumber), 1);
     }
     this.setState({[drumType] : drum});
+    drumWorker.postMessage([this.state]);
   }
 
   /**
@@ -91,6 +98,7 @@ class App extends Component {
     this.setState({isPlaying: isPlaying}, () => {
       if (isPlaying) {
         midiManager.play(this.state);
+        drumWorker.postMessage(this.state);
       } else {
         midiManager.stop();
       }
