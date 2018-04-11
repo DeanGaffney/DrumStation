@@ -41,13 +41,11 @@ class MidiManager {
      * Plays the drums
      * @param {Object} appState - the entire App.js state
      */
-    play(appState){
-
+    play(){
         midiManager.intervalId = setInterval(function () {
-          var drums = [appState.bass, appState.snare, appState.hihat];
-          for (var i = 0; i < drums.length; i++) {
-            if (drums[i].steps.includes(midiManager.currentIndex + 1)) {
-              midiManager.playNote(drums[i].note, "all", 1000, 1000);
+          for (var i = 0; i < midiManager.drums.length; i++) {
+            if (midiManager.drums[i].steps.includes(midiManager.currentIndex + 1)) {
+              midiManager.playNote(midiManager.drums[i].note, "all", 1000, 1000);
             }
           }
           midiManager.currentIndex = (midiManager.currentIndex + 1) % 16;

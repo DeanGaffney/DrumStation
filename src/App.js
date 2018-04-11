@@ -56,8 +56,6 @@ class App extends Component {
     }
   }
 
-
-
   /**
    * Called when a drum control is changed,
    * the drum control in the app state is then updated with the new value
@@ -73,11 +71,9 @@ class App extends Component {
     this.setState({ [drumType]: drum });
 
     if(this.state.isPlaying){
-      midiManager.drums = [this.state.bass, this.state.snare,this.state.hihat, this.state.tomTom];
+      this.updateMidiManagerDrums();
     }
   }
-
-
 
   /**
    * Called when a step in a step sequencer changes
@@ -95,7 +91,7 @@ class App extends Component {
     this.setState({[drumType] : drum});
 
     if(this.state.isPlaying){
-      midiManager.drums = [this.state.bass, this.state.snare, this.state.hihat, this.state.tomTom];
+      this.updateMidiManagerDrums();
     }
   }
 
@@ -106,8 +102,8 @@ class App extends Component {
   onPlayClicked(isPlaying){
     this.setState({isPlaying: isPlaying}, () => {
       if (isPlaying) {
-          midiManager.drums = [this.state.bass, this.state.snare, this.state.hihat, this.state.tomTom];
-          midiManager.play(this.state);
+          this.updateMidiManagerDrums();
+          midiManager.play();
       } else {
         midiManager.stop();
       }
@@ -116,6 +112,10 @@ class App extends Component {
 
   onCueClicked(cue){
     midiManager.currentIndex = 0;
+  }
+
+  updateMidiManagerDrums(){
+    midiManager.drums = [this.state.bass, this.state.snare, this.state.hihat, this.state.tomTom];
   }
 
   render() {
