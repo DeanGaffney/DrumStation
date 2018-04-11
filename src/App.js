@@ -18,48 +18,55 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      bass: {
-        bassControl1: 0,
-        bassControl2: 0,
-        bassControl3: 0,
-        bassControl4: 0,
-        steps: [],
-        note: "C1",
-        name: "Bass"
-      },
-      snare: {
-        snareControl1: 0,
-        snareControl2: 0,
-        snareControl3: 0,
-        snareControl4: 0,
-        steps:[],
-        note: "D1",
-        name: "Snare"
-      },
-      tomTom: {
-        tomTomControl1: 0,
-        tomTomControl2: 0,
-        tomTomControl3: 0,
-        steps:[],
-        note: "E1",
-        name: "Tom"
-      },
-      hihat: {
-        hihatControl1: 0,
-        hihatControl2: 0,
-        hihatControl3: 0,
-        steps: [],
-        note: "F#1",
-        name: "Hi Hat"
-      },
-      cymbals:{
-        cymbalsControl1: 0,
-        cymbalsControl2: 0,
-        cymbalsControl3: 0,
-        steps: [],
-        note: "C#3",
-        name: "Cymbals"
-      },
+      drums:[
+        {
+            bassControl1: 0,
+            bassControl2: 0,
+            bassControl3: 0,
+            bassControl4: 0,
+            steps: [],
+            note: "C1",
+            name: "Bass",
+            type: "bass"
+        },
+        {
+            snareControl1: 0,
+            snareControl2: 0,
+            snareControl3: 0,
+            snareControl4: 0,
+            steps: [],
+            note: "D1",
+            name: "Snare",
+            type: "snare"
+        },
+        {
+            tomTomControl1: 0,
+            tomTomControl2: 0,
+            tomTomControl3: 0,
+            steps: [],
+            note: "E1",
+            name: "Tom",
+            type: "tomTom"
+        },
+        {
+            hihatControl1: 0,
+            hihatControl2: 0,
+            hihatControl3: 0,
+            steps: [],
+            note: "F#1",
+            name: "Hi Hat",
+            type: "hihat"
+        },
+        {
+            cymbalsControl1: 0,
+            cymbalsControl2: 0,
+            cymbalsControl3: 0,
+            steps: [],
+            note: "C#3",
+            name: "Cymbals",
+            type: "cymbals"
+        }
+      ],
       isPlaying: false,
       cue: false,
       bpm: 120
@@ -75,14 +82,36 @@ class App extends Component {
    * @param {number} controlChangeNum - value of the control change message
    */
   onDrumControlChange(drumType, controlNum, newValue, controlChangeNum) {
+    var stateCopy = Object.assign({}, this.state);
+    var drum = stateCopy.drums[this.getDrumIndexByType(drumType)];
     var drumControlKey = drumType + "Control" + controlNum;
-    let drum = Object.assign({}, this.state[drumType]);
     drum[drumControlKey] = newValue;
-    this.setState({ [drumType]: drum });
+    this.setState(stateCopy);
 
     if(this.state.isPlaying){
       this.updateMidiManagerDrums();
     }
+  }
+
+  getDrumIndexByType(drumType){
+    var index = 0;
+    switch(drumType){
+      case "snare":
+        index = 1;
+        break;
+      case "tomTom":
+        index = 2;
+        break;
+      case "hihat":
+        index = 3;
+        break;
+      case "cymbals":
+        index = 4;
+        break;
+      default:
+        index = 0;    //bass will default to 0
+    }
+    return index;
   }
 
   /**
@@ -92,13 +121,14 @@ class App extends Component {
    * @param {boolean} isPlaying - the value to trigger the step as playing or not playing
    * */
   onStepSequencerChange(drumType, stepNumber, isPlaying){
-    let drum = Object.assign({}, this.state[drumType]);
+    var stateCopy = Object.assign({}, this.state);
+    var drum = stateCopy.drums[this.getDrumIndexByType(drumType)];
     if(isPlaying){
       drum['steps'].push(stepNumber);
     }else{
       drum['steps'].splice(drum['steps'].indexOf(stepNumber), 1);
     }
-    this.setState({[drumType] : drum});
+    this.setState(stateCopy);
 
     if(this.state.isPlaying){
       this.updateMidiManagerDrums();
@@ -125,7 +155,7 @@ class App extends Component {
   }
 
   updateMidiManagerDrums(){
-    midiManager.drums = [this.state.bass, this.state.snare, this.state.hihat, this.state.tomTom];
+    midiManager.drums = this.state.drums;
   }
 
   render() {
@@ -142,38 +172,37 @@ class App extends Component {
         </TabList>
 
         <TabPanel>
-            <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
+            <BassDrum bass={this.state.drums[0]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
         </TabPanel>
 
         <TabPanel>
-          <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+          <SnareDrum snare={this.state.drums[1]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
         </TabPanel>
 
         <TabPanel>
-          <TomTom tomTom={this.state.tomTom} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+          <TomTom tomTom={this.state.drums[2]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
         </TabPanel>
 
         <TabPanel>
-          <HiHat hihat={this.state.hihat} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+          <HiHat hihat={this.state.drums[3]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
         </TabPanel>
 
         <TabPanel>
-          <Cymbals cymbals={this.state.cymbals} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+          <Cymbals cymbals={this.state.drums[4]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
         </TabPanel>
 
         <TabPanel>
-            <StepSequencerGroup bass={this.state.bass} snare={this.state.snare} tomTom={this.state.tomTom} hihat={this.state.hihat} cymbals={this.state.cymbals}
-                                onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
+            <StepSequencerGroup drums={this.state.drums} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
         </TabPanel>
