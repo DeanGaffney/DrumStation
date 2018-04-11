@@ -10,6 +10,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { midiManager } from './webmidi/MidiManager';
 import PlayButton from './components/playButton/PlayButton';
 import CueButton from './components/cueButton/CueButton';
+import StepSequencerGroup from './components/stepSequencer/StepSequencerGroup';
 
 class App extends Component {
 
@@ -37,7 +38,7 @@ class App extends Component {
         tomTomControl2: 0,
         tomTomControl3: 0,
         steps:[],
-        note: "F1"
+        note: "E1"
       },
       hihat: {
         hihatControl1: 0,
@@ -125,6 +126,7 @@ class App extends Component {
           <Tab>Snare</Tab>
           <Tab>Tom Toms</Tab>
           <Tab>Hi Hat</Tab>
+          <Tab>Global Steps</Tab>
         </TabList>
 
         <TabPanel>
@@ -147,6 +149,13 @@ class App extends Component {
         <TabPanel>
           <HiHat hihat={this.state.hihat} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
+        </TabPanel>
+
+        <TabPanel>
+            <StepSequencerGroup bass={this.state.bass} snare={this.state.snare} tomTom={this.state.tomTom} hihat={this.state.hihat}
+                                onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
+            <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
+            <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
         </TabPanel>
 
       </Tabs>
