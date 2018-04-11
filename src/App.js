@@ -5,6 +5,7 @@ import BassDrum from './pages/bass/BassDrum';
 import SnareDrum from './pages/snare/SnareDrum';
 import TomTom from './pages/tomTom/TomTom';
 import HiHat from './pages/hihat/HiHat';
+import Cymbals from './pages/cymbals/Cymbals';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { midiManager } from './webmidi/MidiManager';
@@ -46,9 +47,18 @@ class App extends Component {
       hihat: {
         hihatControl1: 0,
         hihatControl2: 0,
+        hihatControl3: 0,
         steps: [],
         note: "F#1",
         name: "Hi Hat"
+      },
+      cymbals:{
+        cymbalsControl1: 0,
+        cymbalsControl2: 0,
+        cymbalsControl3: 0,
+        steps: [],
+        note: "C#3",
+        name: "Cymbals"
       },
       isPlaying: false,
       cue: false,
@@ -127,6 +137,7 @@ class App extends Component {
           <Tab>Snare</Tab>
           <Tab>Tom Toms</Tab>
           <Tab>Hi Hat</Tab>
+          <Tab>Cymbals</Tab>
           <Tab>Global Steps</Tab>
         </TabList>
 
@@ -134,26 +145,34 @@ class App extends Component {
             <BassDrum bass={this.state.bass} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
-
         </TabPanel>
 
         <TabPanel>
           <SnareDrum snare={this.state.snare} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
+          <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
         </TabPanel>
 
         <TabPanel>
           <TomTom tomTom={this.state.tomTom} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
+          <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
         </TabPanel>
 
         <TabPanel>
           <HiHat hihat={this.state.hihat} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
+          <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
         </TabPanel>
 
         <TabPanel>
-            <StepSequencerGroup bass={this.state.bass} snare={this.state.snare} tomTom={this.state.tomTom} hihat={this.state.hihat}
+          <Cymbals cymbals={this.state.cymbals} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+          <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
+          <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
+        </TabPanel>
+
+        <TabPanel>
+            <StepSequencerGroup bass={this.state.bass} snare={this.state.snare} tomTom={this.state.tomTom} hihat={this.state.hihat} cymbals={this.state.cymbals}
                                 onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>

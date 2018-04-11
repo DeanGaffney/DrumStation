@@ -29,6 +29,19 @@ class HiHat extends Component {
           </div>
 
         </div>
+
+        <div className="row">
+
+          <div className="drum-control-col col-6 text-center">
+            <DrumKnob
+              controlValue={this.props.hihat.hihatControl3}
+              onDrumControlChange={this.props.onDrumControlChange}
+              controlNum={3}
+              drumType={"hihat"}
+              controlChangeNum={3} />
+          </div>
+
+        </div>
         <StepSequencer steps={this.props.hihat.steps}
           drumType={"hihat"}
           onStepSequencerChange={this.props.onStepSequencerChange}

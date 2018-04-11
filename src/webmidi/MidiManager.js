@@ -39,7 +39,6 @@ class MidiManager {
 
     /**
      * Plays the drums
-     * @param {Object} appState - the entire App.js state
      */
     play(){
         midiManager.intervalId = setInterval(function () {
@@ -49,7 +48,7 @@ class MidiManager {
             }
           }
           midiManager.currentIndex = (midiManager.currentIndex + 1) % 16;
-        }, (60 / appState.bpm / 4)  * 1000);
+        }, (60 / midiManager.bpm / 4)  * 1000);
     }
 
     /**

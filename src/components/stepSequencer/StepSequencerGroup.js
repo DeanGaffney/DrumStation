@@ -56,6 +56,18 @@ class StepSequencerGroup extends React.Component {
           </div>
         </div>
 
+        <div className="row">
+          <div className="col-1 global-drum-name">
+            <h4>{this.props.cymbals.name}</h4>
+          </div>
+          <div className="col-10">
+            <StepSequencer steps={this.props.cymbals.steps}
+                            drumType={"cymbals"}
+                            onStepSequencerChange={this.props.onStepSequencerChange}
+              />
+          </div>
+        </div>
+
       </div>
     );
   }
