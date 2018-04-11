@@ -23,7 +23,8 @@ class App extends Component {
         bassControl3: 0,
         bassControl4: 0,
         steps: [],
-        note: "C1"
+        note: "C1",
+        name: "Bass"
       },
       snare: {
         snareControl1: 0,
@@ -31,20 +32,23 @@ class App extends Component {
         snareControl3: 0,
         snareControl4: 0,
         steps:[],
-        note: "D1"
+        note: "D1",
+        name: "Snare"
       },
       tomTom: {
         tomTomControl1: 0,
         tomTomControl2: 0,
         tomTomControl3: 0,
         steps:[],
-        note: "E1"
+        note: "E1",
+        name: "Tom"
       },
       hihat: {
         hihatControl1: 0,
         hihatControl2: 0,
         steps: [],
-        note: "F#1"
+        note: "F#1",
+        name: "Hi Hat"
       },
       isPlaying: false,
       cue: false,
