@@ -62,7 +62,7 @@ class App extends Component {
             cymbalsControl2: 0,
             cymbalsControl3: 0,
             steps: [],
-            note: "C#3",
+            note: "C#2",
             name: "Cymbals",
             type: "cymbals"
         }
