@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './App.css';
+import _ from 'lodash';
 import BassDrum from './pages/bass/BassDrum';
 import SnareDrum from './pages/snare/SnareDrum';
 import TomTom from './pages/tomTom/TomTom';
@@ -11,6 +12,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { midiManager } from './webmidi/MidiManager';
 import PlayButton from './components/playButton/PlayButton';
 import CueButton from './components/cueButton/CueButton';
+import ClearButton from './components/clearButton/ClearButton';
+import GlobalClearButton from './components/clearButton/GlobalClearButton';
 import StepSequencerGroup from './components/stepSequencer/StepSequencerGroup';
 
 class App extends Component {
@@ -154,6 +157,22 @@ class App extends Component {
     midiManager.currentIndex = 0;
   }
 
+  onClearClicked(drumType){
+     var stateCopy = Object.assign({}, this.state);
+     var drumIndex = this.getDrumIndexByType(drumType);
+     var drum = stateCopy.drums[drumIndex];
+     drum.steps = [];
+     this.setState(stateCopy);
+  }
+
+//Not working
+  onGlobalClearClicked(){
+    var drumsCopy = JSON.parse(JSON.stringify(this.state.drums));
+    for(var i = 0; i <= drumsCopy.length; i++){
+      this.onClearClicked(drumsCopy[i].type);
+    }
+  }
+
   updateMidiManagerDrums(){
     midiManager.drums = this.state.drums;
   }
@@ -175,36 +194,42 @@ class App extends Component {
             <BassDrum bass={this.state.drums[0]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
+            <ClearButton drumType={this.state.drums[0].type} onClearClicked={this.onClearClicked.bind(this)}/>
         </TabPanel>
 
         <TabPanel>
           <SnareDrum snare={this.state.drums[1]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
+          <ClearButton drumType={this.state.drums[1].type} onClearClicked={this.onClearClicked.bind(this)}/>
         </TabPanel>
 
         <TabPanel>
           <TomTom tomTom={this.state.drums[2]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
+          <ClearButton drumType={this.state.drums[2].type} onClearClicked={this.onClearClicked.bind(this)}/>
         </TabPanel>
 
         <TabPanel>
           <HiHat hihat={this.state.drums[3]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
+          <ClearButton drumType={this.state.drums[3].type} onClearClicked={this.onClearClicked.bind(this)}/>
         </TabPanel>
 
         <TabPanel>
           <Cymbals cymbals={this.state.drums[4]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
+          <ClearButton drumType={this.state.drums[4].type} onClearClicked={this.onClearClicked.bind(this)}/>
         </TabPanel>
 
         <TabPanel>
             <StepSequencerGroup drums={this.state.drums} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
+            <GlobalClearButton onGlobalClearClicked={this.onGlobalClearClicked.bind(this)}/>
         </TabPanel>
 
       </Tabs>

@@ -11,6 +11,7 @@ class HiHat extends Component {
         <div className="row">
 
           <div className="drum-control-col col-6 text-center">
+          <h2>Tune</h2>
             <DrumKnob
              controlValue={this.props.hihat.hihatControl1}
              onDrumControlChange={this.props.onDrumControlChange}
@@ -20,6 +21,7 @@ class HiHat extends Component {
           </div>
 
           <div className="drum-control-col col-6 text-center">
+          <h2>Level</h2>
             <DrumKnob
               controlValue={this.props.hihat.hihatControl2}
               onDrumControlChange={this.props.onDrumControlChange}
@@ -33,6 +35,7 @@ class HiHat extends Component {
         <div className="row">
 
           <div className="drum-control-col col-6 text-center">
+          <h2>Decay</h2>
             <DrumKnob
               controlValue={this.props.hihat.hihatControl3}
               onDrumControlChange={this.props.onDrumControlChange}

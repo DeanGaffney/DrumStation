@@ -34,6 +34,7 @@ class SnareDrum extends Component {
                 <div className="row">
 
                     <div className="drum-control-col col-6 text-center">
+                    <h2>Tone</h2>
                         <DrumKnob
                             controlValue={this.props.snare.snareControl3}
                             onDrumControlChange={this.props.onDrumControlChange}
@@ -42,6 +43,7 @@ class SnareDrum extends Component {
                             controlChangeNum={1} />
                     </div>
                     <div className="drum-control-col col-6 text-center">
+                    <h2>Snappy</h2>
                         <DrumKnob
                             controlValue={this.props.snare.snareControl4}
                             onDrumControlChange={this.props.onDrumControlChange}

@@ -11,6 +11,7 @@ class TomTom extends Component {
         <div className="row">
 
           <div className="drum-control-col col-6 text-center">
+          <h2>Tune</h2>
             <DrumKnob
              controlValue={this.props.tomTom.tomTomControl1}
              onDrumControlChange={this.props.onDrumControlChange}
@@ -20,6 +21,7 @@ class TomTom extends Component {
           </div>
 
           <div className="drum-control-col col-6 text-center">
+          <h2>Level</h2>
             <DrumKnob
               controlValue={this.props.tomTom.tomTomControl2}
               onDrumControlChange={this.props.onDrumControlChange}
@@ -29,6 +31,7 @@ class TomTom extends Component {
           </div>
 
           <div className="drum-control-col col-6 text-center">
+          <h2>Decay</h2>
             <DrumKnob
               controlValue={this.props.tomTom.tomTomControl2}
               onDrumControlChange={this.props.onDrumControlChange}
