@@ -12,7 +12,6 @@ import { midiManager } from './webmidi/MidiManager';
 import PlayButton from './components/playButton/PlayButton';
 import CueButton from './components/cueButton/CueButton';
 import StepSequencerGroup from './components/stepSequencer/StepSequencerGroup';
-import MidiWorker from 'workerize-loader!./workers/MidiWorker'; // eslint-disable-line import/no-webpack-loader-syntax
 
 class App extends Component {
 
@@ -72,7 +71,6 @@ class App extends Component {
       cue: false,
       bpm: 120
     }
-    this.worker = new MidiWorker();
   }
 
   /**
@@ -145,15 +143,9 @@ class App extends Component {
     this.setState({isPlaying: isPlaying}, () => {
       if (isPlaying) {
           this.updateMidiManagerDrums();
-          // midiManager.play();
-          // if(this.worker == "undefined"){
-          //   this.worker = new MidiWorker();
-          // }
-          this.worker.start();
+          midiManager.play();
       } else {
         midiManager.stop();
-        this.worker.terminate();
-        // this.worker = undefined;
       }
     });
   }
