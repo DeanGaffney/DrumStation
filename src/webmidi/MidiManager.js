@@ -22,14 +22,15 @@ class MidiManager {
                 console.log("WebMidi could not be enabled.", err);
             } else {
                 console.log("WebMidi enabled!");
-                midiManager.output = WebMidi.getOutputByName("loopMIDI Port");
+                console.log(WebMidi.outputs);
+                midiManager.output = WebMidi.getOutputByName("Digidesign Mbox2 MIDI Out");
                 console.log(midiManager.output);
             }
         });
     }
 
     playNote(note, channel,time, dur){
-      midiManager.output.playNote(note, channel, {time: time});
+      midiManager.output.playNote(note, channel, {time: time, rawVelocity: true, velocity: 127});
       midiManager.output.stopNote(note, channel, {time: time + dur});
     }
 
@@ -44,7 +45,7 @@ class MidiManager {
         midiManager.intervalId = setInterval(function () {
           for (var i = 0; i < midiManager.drums.length; i++) {
             if (midiManager.drums[i].steps.includes(midiManager.currentIndex + 1)) {
-              midiManager.playNote(midiManager.drums[i].note, "all", 1000, 1000);
+              midiManager.playNote(midiManager.drums[i].note, "all", 0, 0);
             }
           }
           midiManager.currentIndex = (midiManager.currentIndex + 1) % 16;

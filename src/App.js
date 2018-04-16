@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import _ from 'lodash';
 import BassDrum from './pages/bass/BassDrum';
 import SnareDrum from './pages/snare/SnareDrum';
 import TomTom from './pages/tomTom/TomTom';
@@ -90,6 +89,7 @@ class App extends Component {
     var drumControlKey = drumType + "Control" + controlNum;
     drum[drumControlKey] = newValue;
     this.setState(stateCopy);
+    midiManager.sendControlChange(controlChangeNum, newValue, "all", {time: 1000});
 
     if(this.state.isPlaying){
       this.updateMidiManagerDrums();

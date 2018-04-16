@@ -17,7 +17,7 @@ class BassDrum extends Component {
              onDrumControlChange={this.props.onDrumControlChange}
              controlNum={1}
              drumType={"bass"}
-             controlChangeNum={1}/>
+             controlChangeNum={23}/>
           </div>
           <div className="drum-control-col col-6 text-center">
           <h2>Level</h2>
@@ -38,7 +38,7 @@ class BassDrum extends Component {
             <DrumKnob
               controlValue={this.props.bass.bassControl3}
               onDrumControlChange={this.props.onDrumControlChange}
-              controlNum={3}
+              controlNum={77}
               drumType={"bass"}
               controlChangeNum={3}/>
           </div>
@@ -49,12 +49,12 @@ class BassDrum extends Component {
               onDrumControlChange={this.props.onDrumControlChange}
               controlNum={4}
               drumType={"bass"}
-              controlChangeNum={8}/>
+              controlChangeNum={25}/>
           </div>
 
         </div>
-        <StepSequencer steps={this.props.bass.steps} 
-                       drumType={"bass"} 
+        <StepSequencer steps={this.props.bass.steps}
+                       drumType={"bass"}
                        onStepSequencerChange={this.props.onStepSequencerChange}
         />
       </div>
