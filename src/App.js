@@ -6,6 +6,7 @@ import SnareDrum from './pages/snare/SnareDrum';
 import TomTom from './pages/tomTom/TomTom';
 import HiHat from './pages/hihat/HiHat';
 import Cymbals from './pages/cymbals/Cymbals';
+import Cowbell from './pages/cowbell/Cowbell';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { midiManager } from './webmidi/MidiManager';
@@ -67,6 +68,14 @@ class App extends Component {
             note: "C#2",
             name: "Cymbals",
             type: "cymbals"
+        },
+        {
+          cowbellControl1: 0,
+          cowbellControl2: 0,
+          steps: [],
+          note: "G#2",
+          name: "Cowbell",
+          type: "cowbell"
         }
       ],
       isPlaying: false,
@@ -96,6 +105,7 @@ class App extends Component {
     }
   }
 
+
   getDrumIndexByType(drumType){
     var index = 0;
     switch(drumType){
@@ -110,6 +120,9 @@ class App extends Component {
         break;
       case "cymbals":
         index = 4;
+        break;
+      case "cowbell":
+        index = 5;
         break;
       default:
         index = 0;    //bass will default to 0
@@ -187,6 +200,7 @@ class App extends Component {
           <Tab>Tom Toms</Tab>
           <Tab>Hi Hat</Tab>
           <Tab>Cymbals</Tab>
+          <Tab>Cowbell</Tab>
           <Tab>Global Steps</Tab>
         </TabList>
 
@@ -223,6 +237,13 @@ class App extends Component {
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
           <ClearButton drumType={this.state.drums[4].type} onClearClicked={this.onClearClicked.bind(this)}/>
+        </TabPanel>
+
+        <TabPanel>
+          <Cowbell cowbell={this.state.drums[5]} onDrumControlChange={this.onDrumControlChange.bind(this)} onStepSequencerChange={this.onStepSequencerChange.bind(this)} />
+          <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
+          <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
+          <ClearButton drumType={this.state.drums[5].type} onClearClicked={this.onClearClicked.bind(this)}/>
         </TabPanel>
 
         <TabPanel>

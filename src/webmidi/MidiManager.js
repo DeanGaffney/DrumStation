@@ -23,7 +23,7 @@ class MidiManager {
             } else {
                 console.log("WebMidi enabled!");
                 console.log(WebMidi.outputs);
-                midiManager.output = WebMidi.getOutputByName("Digidesign Mbox2 MIDI Out");
+                midiManager.output = WebMidi.getOutputByName("loopMIDI Port"); //Digidesign Mbox2 MIDI Out
                 console.log(midiManager.output);
             }
         });
