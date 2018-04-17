@@ -33,6 +33,7 @@ class TempoKnob extends React.Component {
         onChange={this.handleChange}
         min={0}
         max={180}
+        fgColor='#0099ff'
       />
     );
   }

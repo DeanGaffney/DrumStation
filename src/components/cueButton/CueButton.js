@@ -1,4 +1,7 @@
 import React from 'react';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faCue from '@fortawesome/fontawesome-free-solid/faStepBackward'
+
 
 class CueButton extends React.Component {
 
@@ -18,7 +21,9 @@ class CueButton extends React.Component {
 
     render() {
         return (
-          <button onClick={() => {this.handleClick()}}>Cue</button>
+          <button onClick={() => {this.handleClick()}}>
+            <FontAwesomeIcon icon={faCue}/>
+          </button>
         );
     }
 }

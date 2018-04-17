@@ -1,4 +1,7 @@
 import React from 'react';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faPlay from '@fortawesome/fontawesome-free-solid/faPlay'
+import faStop from '@fortawesome/fontawesome-free-solid/faStop'
 
 class PlayButton extends React.Component {
 
@@ -18,7 +21,9 @@ class PlayButton extends React.Component {
 
     render() {
         return (
-          <button onClick={() => {this.handleClick()}}>{(this.props.isPlaying) ?  "Stop" : "Play"}</button>
+          <button onClick={() => {this.handleClick()}}>
+          <FontAwesomeIcon icon={(this.props.isPlaying) ? faStop : faPlay}/>
+          </button>
         );
     }
 }

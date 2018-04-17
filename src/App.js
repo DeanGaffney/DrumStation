@@ -215,7 +215,10 @@ class App extends Component {
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
             <ClearButton drumType={this.state.drums[0].type} onClearClicked={this.onClearClicked.bind(this)}/>
-            <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
+            <center>
+              <h2>Tempo</h2>
+              <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
+            </center>
         </TabPanel>
 
         <TabPanel>
@@ -223,6 +226,10 @@ class App extends Component {
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
           <ClearButton drumType={this.state.drums[1].type} onClearClicked={this.onClearClicked.bind(this)}/>
+          <center>
+            <h2>Tempo</h2>
+            <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
+          </center>
         </TabPanel>
 
         <TabPanel>
@@ -230,6 +237,10 @@ class App extends Component {
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
           <ClearButton drumType={this.state.drums[2].type} onClearClicked={this.onClearClicked.bind(this)}/>
+          <center>
+            <h2>Tempo</h2>
+            <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
+          </center>
         </TabPanel>
 
         <TabPanel>
@@ -237,6 +248,10 @@ class App extends Component {
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
           <ClearButton drumType={this.state.drums[3].type} onClearClicked={this.onClearClicked.bind(this)}/>
+          <center>
+            <h2>Tempo</h2>
+            <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
+          </center>
         </TabPanel>
 
         <TabPanel>
@@ -244,6 +259,10 @@ class App extends Component {
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
           <ClearButton drumType={this.state.drums[4].type} onClearClicked={this.onClearClicked.bind(this)}/>
+          <center>
+            <h2>Tempo</h2>
+            <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
+          </center>
         </TabPanel>
 
         <TabPanel>
@@ -251,6 +270,10 @@ class App extends Component {
           <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)} />
           <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)} />
           <ClearButton drumType={this.state.drums[5].type} onClearClicked={this.onClearClicked.bind(this)}/>
+          <center>
+            <h2>Tempo</h2>
+            <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
+          </center>
         </TabPanel>
 
         <TabPanel>
@@ -258,6 +281,10 @@ class App extends Component {
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
             <GlobalClearButton onGlobalClearClicked={this.onGlobalClearClicked.bind(this)}/>
+            <center>
+              <h2>Tempo</h2>
+              <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
+            </center>
         </TabPanel>
 
       </Tabs>
