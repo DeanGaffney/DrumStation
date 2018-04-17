@@ -15,6 +15,7 @@ import CueButton from './components/cueButton/CueButton';
 import ClearButton from './components/clearButton/ClearButton';
 import GlobalClearButton from './components/clearButton/GlobalClearButton';
 import StepSequencerGroup from './components/stepSequencer/StepSequencerGroup';
+import TempoKnob from './components/knobs/TempoKnob';
 
 class App extends Component {
 
@@ -73,7 +74,7 @@ class App extends Component {
           cowbellControl1: 0,
           cowbellControl2: 0,
           steps: [],
-          note: "G#2",
+          note: "D#2",
           name: "Cowbell",
           type: "cowbell"
         }
@@ -105,6 +106,11 @@ class App extends Component {
     }
   }
 
+ onTempoChange(newValue){
+   this.setState({bpm: newValue});
+   midiManager.bpm = newValue;
+   console.log(this.state.bpm);
+ }
 
   getDrumIndexByType(drumType){
     var index = 0;
@@ -209,6 +215,7 @@ class App extends Component {
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
             <ClearButton drumType={this.state.drums[0].type} onClearClicked={this.onClearClicked.bind(this)}/>
+            <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
         </TabPanel>
 
         <TabPanel>

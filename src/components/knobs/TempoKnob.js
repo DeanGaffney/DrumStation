@@ -4,7 +4,7 @@ import Knob from 'react-canvas-knob';
 class TempoKnob extends React.Component {
 
   state = {
-    value: 0
+    value: 120
   }
 
   /**
@@ -12,7 +12,7 @@ class TempoKnob extends React.Component {
   * just before the element mounts to the DOM
   **/
   componentWillMount(){
-    this.setState({value: this.props.bpm});
+    this.setState({value: this.props.value});
   }
 
   /**
@@ -21,7 +21,7 @@ class TempoKnob extends React.Component {
    */
   handleChange = (newValue) => {
     //call the parent function to update the main state of the app
-    this.props.onDrumControlChange(this.props.drumType, this.props.controlNum, newValue, this.props.controlChangeNum);
+    this.props.onTempoChange(newValue);
     this.setState({value: newValue});
   };
 
