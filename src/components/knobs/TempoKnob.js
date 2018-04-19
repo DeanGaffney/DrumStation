@@ -1,5 +1,6 @@
 import React from 'react';
 import Knob from 'react-canvas-knob';
+import { midiManager } from '../../webmidi/MidiManager';
 
 class TempoKnob extends React.Component {
 
@@ -23,6 +24,8 @@ class TempoKnob extends React.Component {
     //call the parent function to update the main state of the app
     this.props.onTempoChange(newValue);
     this.setState({value: newValue});
+    midiManager.stop();
+    midiManager.play();
   };
 
   render() {

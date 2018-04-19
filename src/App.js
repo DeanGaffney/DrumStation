@@ -99,7 +99,7 @@ class App extends Component {
     var drumControlKey = drumType + "Control" + controlNum;
     drum[drumControlKey] = newValue;
     this.setState(stateCopy);
-    midiManager.sendControlChange(controlChangeNum, newValue, "all", {time: 1000});
+    midiManager.sendControlChange(controlChangeNum, newValue, "all", {time: 0});
 
     if(this.state.isPlaying){
       this.updateMidiManagerDrums();
@@ -109,7 +109,6 @@ class App extends Component {
  onTempoChange(newValue){
    this.setState({bpm: newValue});
    midiManager.bpm = newValue;
-   console.log(this.state.bpm);
  }
 
   getDrumIndexByType(drumType){
@@ -201,13 +200,13 @@ class App extends Component {
       <Tabs>
 
         <TabList>
-          <Tab>Bass</Tab>
-          <Tab>Snare</Tab>
-          <Tab>Tom Toms</Tab>
-          <Tab>Hi Hat</Tab>
-          <Tab>Cymbals</Tab>
-          <Tab>Cowbell</Tab>
-          <Tab>Global Steps</Tab>
+          <Tab><h4>Bass</h4></Tab>
+          <Tab><h4>Snare</h4></Tab>
+          <Tab><h4>Tom Toms</h4></Tab>
+          <Tab><h4>Hi Hat</h4></Tab>
+          <Tab><h4>Cymbals</h4></Tab>
+          <Tab><h4>Cowbell</h4></Tab>
+          <Tab><h4>Global Steps</h4></Tab>
         </TabList>
 
         <TabPanel>

@@ -7,42 +7,38 @@ class BassDrum extends Component {
   render() {
     return (
       <div className="container-fluid">
-
         <div className="row">
-
-          <div className="drum-control-col col-6 text-center">
+          <div className="drum-control-col col-3 text-center">
           <h2>Tune</h2>
             <DrumKnob
              controlValue={this.props.bass.bassControl1}
              onDrumControlChange={this.props.onDrumControlChange}
              controlNum={1}
              drumType={"bass"}
-             controlChangeNum={23}/>
+             controlChangeNum={20}/>
           </div>
-          <div className="drum-control-col col-6 text-center">
+
+          <div className="drum-control-col col-3 text-center">
           <h2>Level</h2>
             <DrumKnob
               controlValue={this.props.bass.bassControl2}
               onDrumControlChange={this.props.onDrumControlChange}
               controlNum={2}
               drumType={"bass"}
-              controlChangeNum={2} />
+              controlChangeNum={7} />
           </div>
 
-        </div>
-
-        <div className="row">
-
-          <div className="drum-control-col col-6 text-center">
+          <div className="drum-control-col col-3 text-center">
           <h2>Attack/Tone</h2>
             <DrumKnob
               controlValue={this.props.bass.bassControl3}
               onDrumControlChange={this.props.onDrumControlChange}
-              controlNum={77}
+              controlNum={3}
               drumType={"bass"}
-              controlChangeNum={3}/>
+              controlChangeNum={24}/>
           </div>
-          <div className="drum-control-col col-6 text-center">
+
+          <div className="drum-control-col col-3 text-center">
           <h2>Decay</h2>
             <DrumKnob
               controlValue={this.props.bass.bassControl4}
@@ -51,8 +47,8 @@ class BassDrum extends Component {
               drumType={"bass"}
               controlChangeNum={25}/>
           </div>
+          </div>
 
-        </div>
         <StepSequencer steps={this.props.bass.steps}
                        drumType={"bass"}
                        onStepSequencerChange={this.props.onStepSequencerChange}

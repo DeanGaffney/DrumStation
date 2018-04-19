@@ -21,9 +21,7 @@ class CueButton extends React.Component {
 
     render() {
         return (
-          <button onClick={() => {this.handleClick()}}>
-            <FontAwesomeIcon icon={faCue} />
-          </button>
+          <FontAwesomeIcon size="7x" border onClick={() => {this.handleClick()}} icon={faCue} />
         );
     }
 }

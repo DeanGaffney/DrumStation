@@ -7,10 +7,8 @@ class Cymbals extends Component {
     render() {
         return (
             <div className="container-fluid">
-
-                <div className="row">
-
-                    <div className="drum-control-col col-6 text-center">
+              <div className="row">
+                <div className="drum-control-col col-4 text-center">
                         <h2>Tune</h2>
                         <DrumKnob
                             controlValue={this.props.cymbals.cymbalsControl1}
@@ -19,7 +17,20 @@ class Cymbals extends Component {
                             drumType={"cymbals"}
                             controlChangeNum={1} />
                     </div>
-                    <div className="drum-control-col col-6 text-center">
+
+                    <div className="drum-control-col col-4 text-center">
+                      <div className="deletePadding">
+                        <h2>Attack/Tone</h2>
+                        <DrumKnob
+                            controlValue={this.props.cymbals.cymbalsControl3}
+                            onDrumControlChange={this.props.onDrumControlChange}
+                            controlNum={3}
+                            drumType={"cymbals"}
+                            controlChangeNum={3} />
+                       </div>
+                    </div>
+
+                    <div className="drum-control-col col-4 text-center">
                         <h2>Level</h2>
                         <DrumKnob
                             controlValue={this.props.cymbals.cymbalsControl2}
@@ -29,20 +40,7 @@ class Cymbals extends Component {
                             controlChangeNum={2} />
                     </div>
 
-                </div>
-
-                <div className="row">
-
-                    <div className="drum-control-col col-6 text-center">
-                        <h2>Attack/Tone</h2>
-                        <DrumKnob
-                            controlValue={this.props.cymbals.cymbalsControl3}
-                            onDrumControlChange={this.props.onDrumControlChange}
-                            controlNum={3}
-                            drumType={"cymbals"}
-                            controlChangeNum={3} />
-                    </div>
-                </div>
+                  </div>
                 <StepSequencer steps={this.props.cymbals.steps}
                     drumType={"cymbals"}
                     onStepSequencerChange={this.props.onStepSequencerChange}

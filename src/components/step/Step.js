@@ -7,13 +7,13 @@ class Step extends React.Component {
         this.state = {
             shouldPlayStep: false
         };
-        
+
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     /**
      * Triggered when a step component is changed and updates the App.js state
-     * @param {DOM Event} event 
+     * @param {DOM Event} event
      */
     handleInputChange(event) {
         const value = event.target.checked;
@@ -29,12 +29,13 @@ class Step extends React.Component {
         return (
             <div className="form-check form-check-inline">
                 <label className="form-check-label">
-                    <input className="form-check-input" type="checkbox" 
-                           id={this.props.drumType + "-inlineCheckbox" + this.props.number} 
-                           value={"option" + this.props.number} 
+                    <input className="form-check-input" type="checkbox"
+                           id={this.props.drumType + "-inlineCheckbox" + this.props.number}
+                           value={"option" + this.props.number}
                            onChange={this.handleInputChange}
-                           checked={this.props.shouldPlayStep}/> {this.props.number}
+                           checked={this.props.shouldPlayStep}/>
                 </label>
+              <p>  {this.props.number} </p>   
             </div>
         );
     }

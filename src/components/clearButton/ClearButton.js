@@ -1,4 +1,7 @@
 import React from 'react';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faEraser from '@fortawesome/fontawesome-free-solid/faEraser'
+
 
 class ClearButton extends React.Component {
 
@@ -13,7 +16,7 @@ class ClearButton extends React.Component {
 
     render() {
         return (
-          <button onClick={() => {this.handleClick()}}>Clear</button>
+          <FontAwesomeIcon size="7x" border onClick={() => {this.handleClick()}} icon={faEraser} />
         );
     }
 }

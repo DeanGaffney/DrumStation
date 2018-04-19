@@ -17,7 +17,7 @@ class HiHat extends Component {
              onDrumControlChange={this.props.onDrumControlChange}
              controlNum={1}
              drumType={"hihat"}
-             controlChangeNum={1}/>
+             controlChangeNum={55}/>
           </div>
 
           <div className="drum-control-col col-6 text-center">

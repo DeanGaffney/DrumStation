@@ -17,7 +17,7 @@ class SnareDrum extends Component {
                             onDrumControlChange={this.props.onDrumControlChange}
                             controlNum={1}
                             drumType={"snare"}
-                            controlChangeNum={1} />
+                            controlChangeNum={29} />
                     </div>
                     <div className="drum-control-col col-6 text-center">
                     <h2>Level</h2>
@@ -26,7 +26,7 @@ class SnareDrum extends Component {
                             onDrumControlChange={this.props.onDrumControlChange}
                             controlNum={2}
                             drumType={"snare"}
-                            controlChangeNum={1} />
+                            controlChangeNum={7} />
                     </div>
 
                 </div>
@@ -40,7 +40,7 @@ class SnareDrum extends Component {
                             onDrumControlChange={this.props.onDrumControlChange}
                             controlNum={3}
                             drumType={"snare"}
-                            controlChangeNum={1} />
+                            controlChangeNum={30} />
                     </div>
                     <div className="drum-control-col col-6 text-center">
                     <h2>Snappy</h2>
@@ -49,7 +49,7 @@ class SnareDrum extends Component {
                             onDrumControlChange={this.props.onDrumControlChange}
                             controlNum={4}
                             drumType={"snare"}
-                            controlChangeNum={1} />
+                            controlChangeNum={31} />
                     </div>
 
                 </div>
