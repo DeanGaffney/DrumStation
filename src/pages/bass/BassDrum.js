@@ -15,7 +15,7 @@ class BassDrum extends Component {
              onDrumControlChange={this.props.onDrumControlChange}
              controlNum={1}
              drumType={"bass"}
-             controlChangeNum={20}/>
+             controlChangeNum={23}/>
           </div>
 
           <div className="drum-control-col col-3 text-center">
@@ -35,7 +35,7 @@ class BassDrum extends Component {
               onDrumControlChange={this.props.onDrumControlChange}
               controlNum={3}
               drumType={"bass"}
-              controlChangeNum={24}/>
+              controlChangeNum={20}/>
           </div>
 
           <div className="drum-control-col col-3 text-center">

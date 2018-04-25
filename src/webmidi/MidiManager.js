@@ -23,20 +23,21 @@ class MidiManager {
             } else {
                 console.log("WebMidi enabled!");
                 console.log(WebMidi.outputs);
-                midiManager.output = WebMidi.getOutputByName("loopMIDI Port"); //Digidesign Mbox2 MIDI Out
+                midiManager.output = WebMidi.getOutputByName("Digidesign Mbox2 MIDI Out"); //Digidesign Mbox2 MIDI Out
                 console.log(midiManager.output);
             }
         });
     }
 
-    playNote(note, channel,time, dur){
-      midiManager.output.playNote(note, channel, {time: time, rawVelocity: true, velocity: 127});
-      midiManager.output.stopNote(note, channel, {time: time + dur});
-    }
-
     sendControlChange(ctrlNum, value,  channel, ccOptions){
       midiManager.output.sendControlChange(ctrlNum, value, channel, ccOptions);
     }
+
+    playNote(note, channel,time, dur){
+      midiManager.output.playNote(note, channel, {time: time, rawVelocity: true, velocity: 80});
+      midiManager.output.stopNote(note, channel, {time: time + dur});
+    }
+
 
     /**
      * Plays the drums

@@ -27,7 +27,7 @@ class HiHat extends Component {
               onDrumControlChange={this.props.onDrumControlChange}
               controlNum={2}
               drumType={"hihat"}
-              controlChangeNum={2} />
+              controlChangeNum={7} />
           </div>
 
         </div>
@@ -41,7 +41,7 @@ class HiHat extends Component {
               onDrumControlChange={this.props.onDrumControlChange}
               controlNum={3}
               drumType={"hihat"}
-              controlChangeNum={3} />
+              controlChangeNum={56} />
           </div>
 
         </div>

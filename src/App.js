@@ -29,7 +29,7 @@ class App extends Component {
             bassControl3: 0,
             bassControl4: 0,
             steps: [],
-            note: "C1",
+            note: "C0",
             name: "Bass",
             type: "bass"
         },
@@ -39,7 +39,7 @@ class App extends Component {
             snareControl3: 0,
             snareControl4: 0,
             steps: [],
-            note: "D1",
+            note: "D0",
             name: "Snare",
             type: "snare"
         },
@@ -48,7 +48,7 @@ class App extends Component {
             tomTomControl2: 0,
             tomTomControl3: 0,
             steps: [],
-            note: "E1",
+            note: "E0",
             name: "Tom",
             type: "tomTom"
         },
@@ -57,7 +57,7 @@ class App extends Component {
             hihatControl2: 0,
             hihatControl3: 0,
             steps: [],
-            note: "F#1",
+            note: "F#0",
             name: "Hi Hat",
             type: "hihat"
         },
@@ -66,7 +66,7 @@ class App extends Component {
             cymbalsControl2: 0,
             cymbalsControl3: 0,
             steps: [],
-            note: "C#2",
+            note: "G#0",
             name: "Cymbals",
             type: "cymbals"
         },
@@ -74,7 +74,7 @@ class App extends Component {
           cowbellControl1: 0,
           cowbellControl2: 0,
           steps: [],
-          note: "D#2",
+          note: "G#2",
           name: "Cowbell",
           type: "cowbell"
         }
@@ -279,7 +279,7 @@ class App extends Component {
             <StepSequencerGroup drums={this.state.drums} onStepSequencerChange={this.onStepSequencerChange.bind(this)}/>
             <PlayButton isPlaying={this.state.isPlaying} onPlayClicked={this.onPlayClicked.bind(this)}/>
             <CueButton cue={this.state.isPlaying} onCueClicked={this.onCueClicked.bind(this)}/>
-            <GlobalClearButton onGlobalClearClicked={this.onGlobalClearClicked.bind(this)}/>
+
             <center>
               <h2>Tempo</h2>
               <TempoKnob value={this.state.bpm} onTempoChange={this.onTempoChange.bind(this)}/>
